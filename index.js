@@ -19,3 +19,25 @@ function range(count) {
 	
 	return arr;
 }
+
+function getFirstWeekDay(year, month) {
+	let date = new Date(year, month, 1);
+	let num  = date.getDay();
+	
+	if (num == 0) {
+		return 6;
+	} else {
+		return num - 1;
+	}
+}
+
+function getLastWeekDay(year, month) {
+	let date = new Date(year, month + 1, 0);
+	let num  = date.getDay();
+	
+	if (num == 0) {
+		return 6;
+	} else {
+		return num - 1;
+	}
+}
