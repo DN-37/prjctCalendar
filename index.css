@@ -21,9 +21,9 @@
 
 #calendar a {
 	color: blue;
-	font-size: 20px;
+	font-size: 30px;
 	text-decoration: none;
-	border: 1px solid black;
+	border: 1px solid gray;
 }
 
 #calendar a:hover {
@@ -31,5 +31,20 @@
 }
 
 #calendar .active {
-	color: red;
+	background-color: yellow;
+}
+
+td {
+	font-size: 30px;
+	color: orange;
+}
+
+.info {
+	font-size: 40px;
+	padding: 20px;
+	color: blue;
+}
+
+body {
+	color: rgb(150, 175, 9);
 }

@@ -5,7 +5,14 @@ let date  = new Date();
 let year  = date.getFullYear();
 let month = date.getMonth();
 
+let currentMoment = {
+	year: year,
+	month: month,
+	day: date.getDate()
+};
+
 draw(body, year, month);
+initCalendar(year, month, currentMoment, calendar);
 
 function getLastDay(year, month) {
 	let date = new Date(year, month + 1, 0);
@@ -98,13 +105,12 @@ function draw(body, year, month) {
 	createTable(body, nums);
 }
 
-initCalendar(year, month, calendar);
-
-function initCalendar(year, month, calendar) {
+function initCalendar(year, month, currentMoment, calendar) {
 	var info = calendar.querySelector('.info');
 
 	draw(body, year, month);
 	showInfo(year, month, info);
+	showDay(year, month, currentMoment, body);
 }
 
 function showInfo (year, month, elem) {
@@ -127,14 +133,14 @@ next.addEventListener('click', function() {
 	year = getNextYear(year, month);
 	month = getNextMonth(month);
 
-	initCalendar(year, month, calendar);
+	initCalendar(year, month, currentMoment, calendar);
 });
 
 prev.addEventListener('click', function() {
 	year = getPrevYear(year, month);
 	month =getPrevMonth(month);
 
-	initCalendar(year, month, calendar);
+	initCalendar(year, month, currentMoment, calendar);
 });
 
 function getNextYear(year, month) {
@@ -171,4 +177,17 @@ function getPrevMonth(month) {
 		month--;
 	}
 	return month;
+}
+
+function showDay(year, month, currentMoment, body) {
+	if (year == currentMoment['year'] && month == currentMoment['month']) {
+		var tds = body.querySelectorAll('td');
+
+		for (var i = 0; i < tds.length; i++) {
+			if (tds[i].innerHTML == currentMoment['day']) {
+				tds[i].classList.add('active');
+				break;
+			}
+		}
+	}
 }
